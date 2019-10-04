@@ -34,7 +34,7 @@ M.forEach(r => {
 
 // -----------------------------------------------------------------------------
 
-console.log('--- DIFF ALGORITHM ---')
+console.log('--- MYERS DIFF ALGORITHM ---')
 
 let i = b.length
 let j = a.length
