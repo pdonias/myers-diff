@@ -82,18 +82,20 @@ while (ai < path.length) {
   }
   if (p === -1) {
     actions.push({
-      type: 'remove',
-      start: i,
-      length: sum,
+      type: 'delete',
+      value: sum,
     })
   } else if (p === 0) {
+    actions.push({
+      type: 'retain',
+      value: sum
+    })
     i += sum
     j += sum
   } else {
     actions.push({
-      type: 'add',
-      start: i,
-      content: b.split('').slice(j, j + sum).join('')
+      type: 'insert',
+      value: b.split('').slice(j, j + sum).join('')
     })
     i += sum
     j += sum
@@ -111,11 +113,16 @@ console.log('--- EXECUTION ---')
 let s = a.split('')
 console.log(s.join(''))
 
-actions.forEach(({ type, start, content, length }) => {
-  if (type === 'add') {
-    s.splice(start, 0, ...content)
+let cursor = 0
+
+actions.forEach(({ type, value }) => {
+  if (type === 'insert') {
+    s.splice(cursor, 0, ...value)
+    cursor += value.length
+  } else if (type === 'delete') {
+    s.splice(cursor, value)
   } else {
-    s.splice(start, length)
+    cursor += value
   }
   console.log(s.join(''))
 })
