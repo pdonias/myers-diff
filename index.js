@@ -9,19 +9,19 @@ const [,, a, b] = process.argv
 // a . . . . . . .
 // z . . . . . . .
 
-const M = new Array(b.length + 1)
-for (let i = 0; i < M.length; i++) {
+const M = []
+for (let i = 0; i <= b.length; i++) {
   M[i] = new Array(a.length + 1)
 }
 
-for (let i = 0; i < b.length + 1; i++) {
-  for (let j = 0; j < a.length + 1; j++) {
-    if (i === 0 || j === 0) {
-      M[i][j] = 0
-    } else if (a[j-1] === b[i-1]) {
-      M[i][j] = M[i-1][j-1] + 1
+for (let j = 0; j < b.length + 1; j++) {
+  for (let i = 0; i < a.length + 1; i++) {
+    if (j === 0 || i === 0) {
+      M[j][i] = 0
+    } else if (a[i-1] === b[j-1]) {
+      M[j][i] = M[j-1][i-1] + 1
     } else {
-      M[i][j] = Math.max(M[i-1][j], M[i][j-1])
+      M[j][i] = Math.max(M[j-1][i], M[j][i-1])
     }
   }
 }
