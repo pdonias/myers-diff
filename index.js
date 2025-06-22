@@ -104,14 +104,14 @@ while (ai < path.length) {
 }
 
 console.log('--- INSTRUCTIONS ---')
-console.log('actions', actions)
+console.log(actions)
 
 // -----------------------------------------------------------------------------
 
 console.log('--- EXECUTION ---')
 
 let s = a.split('')
-console.log(s.join(''))
+console.log('START:', s.join(''))
 
 let cursor = 0
 
@@ -124,5 +124,7 @@ actions.forEach(({ type, value }) => {
   } else {
     cursor += value
   }
-  console.log(s.join(''))
+  console.log(`${type} ${value}: ${s.join('')}`)
 })
+
+console.log('END:', s.join(''))
